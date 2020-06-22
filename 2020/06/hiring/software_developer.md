@@ -22,56 +22,152 @@ _This page contains challenges for CCTech's hiring activity for June 2020_
 <table>
     <tr>
         <td><img src="images/c1_q1_1.png" height="300"></td>
-        <td><img src="images/c1_q1_2.png" height="300"></td>
-    </tr>
-</table>
 
-#### Write a function that takes two arguments as a input and return **_True_** if **'p'** lies inside the polygon else **_False_**. <br> Do not use any built-in or library functions. This question is to test you ability to create the required algorithm. <br> 
+# A Python3 program to find if 2 given line segments intersect or not 
 
-**Input 1** : array consisting the coordinates of polygon in 2-D <br>
-**Input 2** : coordinated of points in 2-D <br>
-**Output** : **_True_** if point 'p' lies inside the polygon else **_False_** <br>
+  
 
-**Example :** 
+class Point: 
 
-- **Case 1 :**
-    - Input -
-        - $ Polygon$ : $ [[1,0], [8,3], [8,8], [1,5]]  $
-        - $ P $:  $ [3,5] $ 
-        - Output : **True** <br> <br>
-        
+    def __init__(self, x, y): 
 
-- **Case 2 :**
-    - input
-        - $ Polygon $ : $ [[-3,2], [-2,-0.8], [0,1.2], [2.2,0], [2,4.5]]$
-        - $ P $ : $[0,0]$
-        - Output : **False**
+        self.x = x 
 
-***
+        self.y = y 
+
+  
+
+# Given three colinear points p, q, r, the function checks if  
+
+# point q lies on line segment 'pr'  
+
+def onSegment(p, q, r): 
+
+    if ( (q.x <= max(p.x, r.x)) and (q.x >= min(p.x, r.x)) and 
+
+           (q.y <= max(p.y, r.y)) and (q.y >= min(p.y, r.y))): 
+
+        return True
+
+    return False
+
+  
+
+def orientation(p, q, r): 
+
+    # to find the orientation of an ordered triplet (p,q,r) 
+
+    # function returns the following values: 
+
+    # 0 : Colinear points 
+
+    # 1 : Clockwise points 
+
+    # 2 : Counterclockwise 
+
+      
+
+    
+
+    
+
+      
+
+    val = (float(q.y - p.y) * (r.x - q.x)) - (float(q.x - p.x) * (r.y - q.y)) 
+
+    if (val > 0): 
+
+          
+
+        # Clockwise orientation 
+
+        return 1
+
+    elif (val < 0): 
+
+          
+
+        # Counterclockwise orientation 
+
+        return 2
+
+    else: 
+
+          
+
+        # Colinear orientation 
+
+        return 0
+
+  
+
+# The main function that returns true if  
+
+# the line segment 'p1q1' and 'p2q2' intersect. 
+
+def doIntersect(p1,q1,p2,q2): 
+
+      
+
+    # Find the 4 orientations required for  
+
+
 ## Question 2 : Calculate the surface of the building exposed to sunlight?
 
 **Description**  : Given a coordinates of buildings and source point **_'p'_** of sunlight. Calculate the length of building exposed to sunlight having the source at point **_p_**.
+# Python3 program to count buildings  
 
-<img src="./images/c1_q2.png" height="300">
-<br>
+# that can see sunlight. 
 
-#### Write a function that takes two arguments as a input and return **length** of the building exposed to sunlight <br>
+  
 
-**Input 1** : $(n*4*2)$ array consisting the coordinates of n buildings in 2-D, where n is number of buildings <br>
-**Input 2** : coordinated of source of light in 2-D <br>
-**Output** : (float) Length of surface exposed to sunlight
+# Returns count buildings that 
 
-**Example :** 
+# can see sunlight 
 
-- Case 1
-    - Input -
-        - $ Buildings Coordinates$ : $ [[[4,0],[4,-5],[7,-5],[7,0]]]  $
-        - $ S $:  $ [1,1] $ 
-        - Output : **8.0** <br> <br>
-        
+def countBuildings(arr, n): 
 
-- Case 1
-    - input
-        - $ Buildings Coordinates$ : $ [[[4,0],[4,-5],[7,-5],[7,0]], [[0.4,-2],[0.4,-5],[2.5,-5],[2.5,-2]]]  $
-        - $ S $:  $ [-3.5,1] $ 
-        - Output : **to be calculated** <br> <br>
+  
+
+    # Initialuze result (Note that first  
+
+    # building always sees sunlight) 
+
+    count = 1
+
+  
+
+    # Start traversing element 
+
+    curr_max = arr[0] 
+
+    for i in range(1, n): 
+
+      
+
+        # If curr_element is maximum, 
+
+        # update maximum and increment count 
+
+        if (arr[i] > curr_max): 
+
+          
+
+            count += 1
+
+            curr_max = arr[i] 
+
+  
+
+    return count 
+
+  
+
+# Driver code 
+
+arr = [7, 4, 8, 2, 9] 
+
+n = len(arr) 
+
+print(countBuildings(arr, n)) 
+
